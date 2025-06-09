@@ -82,6 +82,8 @@ src/main/java/
 ```
 src/app/
 ├── layout/                  → Componentes comunes del diseño (header, sidebar, etc.)
+├── guards/                  → Guards para proteger rutas (auth, roles, etc.)
+├── interceptors/            → Interceptores HTTP (tokens, logs, manejo de errores)
 ├── models/                  → Interfaces y clases TypeScript
 ├── pages/                   → Páginas por funcionalidades
 │   ├── auth-user/           → Selección del usuario de trabajo
@@ -109,3 +111,17 @@ src/app/
    ```
 
    Accede al navegador: `http://localhost:4200/`
+
+
+
+### ▶️ Algunas vistas frontend
+**MERCANCIAS**
+
+![image](https://github.com/user-attachments/assets/023719b2-d63c-4a8f-b934-4698295e8376)
+
+
+
+**DASHBOARD**
+
+![image](https://github.com/user-attachments/assets/6c059d26-e808-425e-b8f0-ccd87ad85d7d)
+
