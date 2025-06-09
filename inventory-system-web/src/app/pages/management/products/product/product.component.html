@@ -1,0 +1,50 @@
+@if(loading()){
+    <app-loading></app-loading>
+}@else{
+    <form class="p-0 mt-5" [formGroup]="productForm">
+        <div class="flex flex-col gap-2 mb-3">
+            <label for="name" class="font-medium">Product name</label>
+            <input pInputText id="name" type="text" aria-describedby="name-help" formControlName="name" />
+            <div *ngIf="productForm.controls['name'].errors && (productForm.controls['name'].touched || productForm.controls['name'].dirty)">
+                <div *ngIf="productForm.controls['name'].errors?.['required']">
+                    <small id="text-help" class="text-red-500">Type a name</small>
+                </div>  
+            </div>
+        </div>
+
+        <div class="grid grid-cols-2 mb-6">
+            <div class="flex flex-col gap-2 mr-2">
+                <label for="stock" class="font-medium">Items in stock </label>
+                <input pInputText id="stock" type="number" aria-describedby="name-help" formControlName="stock" />
+                <div *ngIf="productForm.controls['stock'].errors && (productForm.controls['stock'].touched || productForm.controls['stock'].dirty)">
+                    <div *ngIf="productForm.controls['stock'].errors?.['required']">
+                        <small id="text-help" class="text-red-500">Type a stock</small>
+                    </div>  
+                    <div *ngIf="productForm.controls['stock'].errors?.['min']">
+                        <small id="text-help" class="text-red-500">Type a number major or equals to zero (0)</small>
+                    </div>  
+                </div>
+            </div>
+            <div class="flex flex-col gap-2 ml-2">
+                <label class="font-medium" htmlFor="entryDate">Entry date</label>
+                <p-datepicker inputId="calendar-24h" formControlName="entryDate" [showTime]="true" [hourFormat]="'24'" showIcon styleClass="w-full" [maxDate]="today()"/>
+                <div *ngIf="productForm.controls['entryDate'].errors && (productForm.controls['entryDate'].touched || productForm.controls['entryDate'].dirty)">
+                    <div *ngIf="productForm.controls['entryDate'].errors?.['required']">
+                        <small id="text-help"class="text-red-500">Type a entry date</small>
+                    </div>  
+                </div>
+            </div>
+        </div>
+
+        <app-form-action-button [updateMode]="updateMode()"
+            (createOrUpdate)="onSubmitProduct($event)"
+            (cancel)="goBack()"
+            (delete)="onDeleteProduct($event)"
+            [showDeleteButton] = "showDeleteButton()"
+            [creatingOrUpdating] = "creatingOrUpdating()"
+            [deleting] = "deleting()"
+            [disabledCreateOrUpdateButton] = "productForm.invalid"
+            >
+        </app-form-action-button>
+    </form>
+}

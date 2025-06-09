@@ -1,0 +1,18 @@
+._bg-primary-500 {
+  position: relative;
+  background-color: transparent;
+}
+
+._bg-primary-500::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: var(--p-primary-color);
+  opacity: 0.25;
+  border-radius: 50%;
+  z-index: 0;
+}
+
+._icon {
+  color: var(--p-primary-color) !important;
+}/*# sourceMappingURL=functionality.component.css.map */

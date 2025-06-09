@@ -1,0 +1,93 @@
+<div class="rounded-xl border border-neutral-200 dark:border-neutral-800">
+    <p-table #dt [value]="products()" [lazy]="true" [paginator]="true" [rows]="10" [totalRecords]="totalRecords()"
+        [loading]="loading()" [showLoader]="true" [rowsPerPageOptions]="[5,10,20]" [globalFilterFields]="[]" 
+        (onLazyLoad)="loadInventoryLazy($event)" sortMode="multiple" [showCurrentPageReport]="true"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} records" dataKey="productId" [(selection)]="selectedProducts" 
+        [tableStyle]="{'min-width': '650px'}">
+        <ng-template pTemplate="caption">
+            <div class="flex flex-wrap justify-between rounded-t-xl bg-neutral-100 dark:bg-neutral-800 p-3">
+               <div class="flex align-items-center flex-wrap">
+                    <button pButton pRipple icon="pi pi-plus" class="p-button-success m-1"
+                        (click)="openNew()" pTooltip="Nuevo" tooltipPosition="bottom">
+                        <span class="p-button-label md:block hidden">Nuevo</span>
+                    </button>
+                    <div class="_badge-container m-1">
+                        <button pButton pRipple icon="pi pi-trash" style="position: relative;"
+                            (click)="deleteSelectedProducts()" pTooltip="Eliminar" tooltipPosition="bottom"
+                            class="p-button-danger " [disabled]="!selectedProducts?.length">
+                            <span class="p-button-label md:block hidden">Eliminar</span>
+                        </button>
+                        <span *ngIf="selectedProducts?.length" (click)="desmarkAll()" class="_badge"
+                            pTooltip="Click para desmarcar" tooltipPosition="bottom">{{ selectedProducts.length }}</span>
+                    </div>
+                </div>
+                <div class="m-1">
+                    <p-iconfield iconPosition="left">
+                        <input pInputText type="search" placeholder="Search" (input)="onGlobalFilter($event, dt)"/>
+                    </p-iconfield>
+                </div>
+            </div>
+        </ng-template>
+
+        <ng-template pTemplate="loadingicon">   
+            <app-loading></app-loading>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width: 3rem">
+                    <p-tableHeaderCheckbox [disabled]="hasDisabledProducts" />
+                </th>
+                <th pSortableColumn="name">
+                    Product
+                    <p-sortIcon field="name"></p-sortIcon>
+                </th>
+                <th pSortableColumn="stock">
+                    Stock
+                    <p-sortIcon field="stock"></p-sortIcon>
+                </th>
+                <th style="width: 10rem">Stock category</th>
+                <th style="width: 20%" pSortableColumn="user.name">
+                    Register
+                    <p-sortIcon field="user.name"></p-sortIcon>
+                </th>
+                <th style="width: 20%" pSortableColumn="entryDate">
+                    Entry date
+                    <p-sortIcon field="entryDate"></p-sortIcon>
+                </th>
+                <th style="width: 3rem"></th>
+            </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-product let-rowIndex="rowIndex">
+            <tr>
+                <td>
+                    <p-tableCheckbox [value]="product" [disabled]="product.disabled" />
+                </td>
+                <td class="font-bold">{{ product.name}}</td>
+                <td class="font-medium text-neutral-500">{{ product.stock}}</td>
+                <td><span *ngIf="getSeverity(product.stock) as severity" class="badge badge-{{severity.color}}">{{severity.label | uppercase}}</span></td>
+                <td>
+                    <div class="flex flex-col">
+                        <span>{{product.user?.name}}</span>
+                        <span class="text-neutral-500">{{product.user?.appointment.name}}</span>
+                    </div>
+                </td>
+                <td>
+                    <div class="flex flex-col">
+                        <span>{{product.entryDate | date:'dd/MM/yyyy HH:mm:ss' }}</span>
+                        <span class="text-blue-500">{{product.entryDate | timeAgo}}</span>
+                    </div>
+                </td>
+                <td class="text-center w-5rem">
+                    <p-tieredmenu #menu [model]="product['items']" [popup]="true" [appendTo]="'body'" [baseZIndex]="1000" [styleClass]="'my-1'"/>
+                    <p-button icon="pi pi-ellipsis-v" [rounded]="true" severity="primary" [outlined]="true" (click)="menu.toggle($event)"/>
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+            <tr>
+                <td [attr.colspan]="7" ><div class="text-center">{{ MESSAGE.NO_RECORDS_FOUND }}</div></td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

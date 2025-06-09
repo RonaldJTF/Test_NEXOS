@@ -1,0 +1,16 @@
+<div class="flex flex-wrap justify-end m-0 p-0">
+    @if(showDeleteButton()){
+        <button pButton pRipple [icon]="deleting() ? 'pi pi-spin pi-spinner m-0' : 'pi pi-trash'"
+            class="p-button-danger" (click)="onSubmitDelete($event)" [disabled]="creatingOrUpdating() || deleting()">
+            <span class="hidden sm:block p-button-label">Delete</span>
+        </button>
+    }
+    <button pButton pRipple icon="pi pi-times" class="p-button-secondary ml-2" (click)="onSubmitCancel($event)"
+        [disabled]="creatingOrUpdating() || deleting()">
+        <span class="hidden sm:block p-button-label">{{buttonCancelNamedAs()}}</span>
+    </button>
+    <button pButton pRipple [icon]="creatingOrUpdating() ? 'pi pi-spin pi-spinner m-0' : 'pi pi-send m-0'"  class="p-button-success ml-2"
+        type="submit" (click)="onSubmitCreateOrUpdate($event)" [disabled]="disabledCreateOrUpdateButton() || creatingOrUpdating() || deleting()">
+        <span class="hidden sm:block p-button-label">{{updateMode() ? "Update" : buttonCreateNamedAs()}}</span>
+    </button>
+</div>

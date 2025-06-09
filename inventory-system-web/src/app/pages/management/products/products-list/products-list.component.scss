@@ -1,0 +1,37 @@
+._badge-container {
+    position: relative;
+    display: inline-block; 
+}
+
+._badge {
+    cursor: pointer;
+    position: absolute;
+    top: -8px;
+    right: -8px; 
+    background-color: var(--primary-color);;
+    color: white;
+    border-radius: 50%;
+    padding: 3px 8px;
+    font-size: 11px;
+    z-index: 1;
+}
+
+:host ::ng-deep .p-datatable-header {
+    border: none;
+    background-color: transparent;
+    padding: 0px;
+}
+
+:host ::ng-deep .p-paginator{
+    border: none;
+    border-bottom-left-radius: 0.75rem;
+    border-bottom-right-radius: 0.75rem;
+}
+
+:host  ::ng-deep .p-datatable .p-datatable-loading-icon{
+    font-size: 1rem;
+}
+
+:host  ::ng-deep  .p-datatable .p-overlay-mask {
+  border-radius: 0.75rem;
+}
