@@ -14,7 +14,7 @@
    CREATE DATABASE nexos_system_db;
    ```
 
-2. Ejecutar el script `NexosDB.sql` que incluye:
+2. Ejecutar el script `NexosDB.sql` (ubicado en Scripts SQL) que incluye:
    - Creación del usuario `nexos_user`
    - Creación del esquema `INVENTORY_SYSTEM`
    - Creación de tablas de histórico o auditoría
@@ -29,10 +29,6 @@ url=jdbc:postgresql://127.0.0.1:5432/nexos_system_db
 username=nexos_user  
 password=nexos12345  
 ```
-
-### 📌 Modelo Entidad-Relación
-
-> Ver en documentos anexos
 
 ---
 
