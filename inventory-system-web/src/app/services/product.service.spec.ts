@@ -88,4 +88,15 @@ describe('ProductService', () => {
     service.deleteSelectedProducts(ids).subscribe();
     expect(webRequestServiceSpy.deleteWithHeaders).toHaveBeenCalledWith('product', undefined, ids);
   });
+
+  it('should call getWithHeaders for loadInventory', () => {
+    const limit = 1;
+    const sortDirection = 'ASC';
+    const expected: Product[] = [{ productId: 1, name: 'Test Product' }] as Product[];
+
+    webRequestServiceSpy.getWithHeaders.and.returnValue(of(expected));
+
+    service.loadInventory(limit, sortDirection).subscribe();
+    expect(webRequestServiceSpy.getWithHeaders).toHaveBeenCalledWith(`product/inventory`, {sortDirection, limit});
+  });
 });
