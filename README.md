@@ -116,8 +116,19 @@ src/app/
 ![image](https://github.com/user-attachments/assets/023719b2-d63c-4a8f-b934-4698295e8376)
 
 
-
 **DASHBOARD**
 
 ![image](https://github.com/user-attachments/assets/6c059d26-e808-425e-b8f0-ccd87ad85d7d)
+
+
+### ▶️ Ejecución de prubas unitarias
+**FRONTEND**
+
+![image](https://github.com/user-attachments/assets/792f8f48-4e0e-4db3-b64a-910edfbd8829)
+![image](https://github.com/user-attachments/assets/5437946b-0315-4711-9d75-d4cbf68e4794)
+
+
+**BACKEND**
+
+![image](https://github.com/user-attachments/assets/3fa97106-e2ff-4be5-869f-b839258a36f3)
 
